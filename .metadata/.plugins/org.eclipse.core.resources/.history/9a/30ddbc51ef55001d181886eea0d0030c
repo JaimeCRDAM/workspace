@@ -33,7 +33,7 @@ public class mysql {
             resul2 = dbmd.getTables(null, "ejemplo", null, null);
             
             while(resul2.next()) {
-            	String catalogo = resul2.getString("TABLE_CAT");
+            	String catalogo = resul.getString("TABLE_CAT");
             	String esquema = resul2.getString("TABLE_SCHEM");
             	String tabla = resul2.getString("TABLE_NAME");
             	String tipo = resul2.getString("TABLE_TYPE");
@@ -42,7 +42,6 @@ public class mysql {
             }
             
             resul.close();
-            resul2.close();
             sentencia.close();
             conexion.close();
         } catch (ClassNotFoundException e) {

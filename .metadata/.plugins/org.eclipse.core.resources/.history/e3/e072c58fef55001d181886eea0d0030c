@@ -25,7 +25,7 @@ public class oracle {
         System.out.println("Usuario: "+usuario);
         
         ResultSet resul2 = null;
-        resul2 = dbmd.getTables(null, "EJEMPLO", null, null);
+        resul2 = dbmd.getTables(null, "ejemplo", null, null);
         
         while(resul2.next()) {
         	String catalogo = resul2.getString("TABLE_CAT");

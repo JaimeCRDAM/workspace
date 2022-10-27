@@ -42,7 +42,6 @@ public class mysql {
             }
             
             resul.close();
-            resul2.close();
             sentencia.close();
             conexion.close();
         } catch (ClassNotFoundException e) {
