@@ -1,0 +1,9 @@
+import java.io.*;
+
+public class EscribirFichData {
+	public EscribirFichData() {
+		File f = new File("FichData.txt");
+		FileOutputStream fOS = new FileOutputStream(f);
+		DataOutputStream dOS = new DataOutputStream(fOS);
+	}
+}

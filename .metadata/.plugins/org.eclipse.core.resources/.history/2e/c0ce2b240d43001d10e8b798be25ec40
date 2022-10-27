@@ -1,0 +1,80 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class EscribirLeerData {
+	int depOffset = 0;
+	int nombreOffset = 4;
+	int localidadOffset = 34;
+	public EscribirLeerData() throws IOException{
+		File f = new File("Departamentos.dat");
+		RandomAccessFile raf = new RandomAccessFile(f, "rw");
+		EscribirDatos(raf);
+		LeerDatos(raf);
+		BorrarDatos(raf, 20)
+		EscribirDatos(raf);
+		raf.close();
+	}
+	
+	private void EscribirDatos(RandomAccessFile raf) throws IOException {
+		int dep[] = {20,30,10,40};
+		String nombre[] = {"Direccion","Compras","Contabilidad","Ventas"};
+		String localidad[] = {"Madrid","Puertollano","Madrid","Ciudad Real"};
+		for(int i = 0; i < dep.length;i++) {
+			int formula = (dep[i]-1)*70;
+			WriteInt(raf, formula, depOffset, dep[i]);
+			WriteString(raf, formula, nombreOffset,nombre[i], 15);
+			WriteString(raf, formula, localidadOffset,localidad[i], 18);
+		}
+
+	}
+	private void BorrarDatos(RandomAccessFile raf, int dep){
+		int formula = (dep-1)*70;
+		WriteInt(raf, formula, depOffset, 0);
+	}
+	private void LeerDatos(RandomAccessFile raf) throws IOException {
+		System.out.println(raf.length());
+		for(int i = 0; i < raf.length();i = i+70) {
+			int formula = i;
+			int departamento = ReadInt(raf, formula, 0);
+			String nombre = ReadString(raf, formula, 4, 15);
+			String localidad = ReadString(raf, formula, 34, 18);
+			String formatted = String.format("Departamento: %s Nombre: %s Localidad: %s", new Object[] {Integer.toString(departamento), nombre, localidad});
+			System.out.println(formatted);
+		}
+	}
+	
+	
+	private String ReadString(RandomAccessFile raf, int pos, int offset, int length) throws IOException {
+
+		char[] nombre = new char[length];
+		raf.seek(pos+offset);
+		for(int i = 0; i<nombre.length; i++) {
+			nombre[i]=raf.readChar();
+		}
+		return String.valueOf(nombre);
+		
+	}
+	
+	private int ReadInt(RandomAccessFile raf, int pos, int offset) throws IOException {
+		raf.seek(pos+offset);
+		return raf.readInt();
+	}
+	
+	private double ReadSalario(RandomAccessFile raf, int pos, int offset) throws IOException {
+		raf.seek(pos+offset);
+		return raf.readDouble();
+	}
+	
+	private void WriteString(RandomAccessFile raf, int pos, int offset, String string, int totalLenght) throws IOException {
+		raf.seek(pos+offset);
+		StringBuffer SBn = new StringBuffer(string);
+		SBn.setLength(totalLenght);
+		raf.writeChars(SBn.toString());
+	}
+	private void WriteInt(RandomAccessFile raf, int pos, int offset, int intToWrite) throws IOException {
+		raf.seek(pos+offset);
+		raf.writeInt(intToWrite);
+	}
+}

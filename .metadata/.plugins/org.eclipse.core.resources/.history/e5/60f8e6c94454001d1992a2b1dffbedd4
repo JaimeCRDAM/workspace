@@ -1,0 +1,19 @@
+package conectores;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class derby {
+
+	public static void main(String[] args) {
+		try {
+			Class.forName("org.sqlite.JDBC");
+			Connection conexionsqlite = DriverManager.getConnection("jdbc:sqlite:d:/sqlite/ejemplo.db");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

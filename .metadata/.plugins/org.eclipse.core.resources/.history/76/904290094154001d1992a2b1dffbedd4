@@ -1,0 +1,18 @@
+package conectores;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class HSQLDB {
+
+	public static void main(String[] args) {
+		try {
+			Class.forName("org.hsqldb.jdbcDriver");
+			// Establecemos una conexión con la BD "ejemplo" que reside en D:/hsqldb/data/ejemplo"
+			Connection conexion = DriverManager.getConnection("jdbc:hsqldb:file:D:/hsqldb/data/ejemplo/ejemplo");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

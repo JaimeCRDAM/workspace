@@ -11,7 +11,7 @@ public class access {
 		Statement statement = conexion.createStatement();
 		ResultSet result = statement.executeQuery("select * from departamentos");
 		while(result.next()) {
-			System.out.println(result.getInt(1) + " "+result.getString(2)+" "+ result.getString(3));
+			System.out.println(result.getInt(1) + " "+result.getString(2)+" "+ result.getString(3));//asd
 		}
 		}catch(Exception e) {
 			e.printStackTrace();

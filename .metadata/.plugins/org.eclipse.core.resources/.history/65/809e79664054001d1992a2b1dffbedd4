@@ -1,0 +1,20 @@
+package conectores;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class sqlite {
+
+	public static void main(String[] args) {
+		try {
+			Class.forName("org.sqlite.JDBC");
+			Connection conexionsqlite =DriverManager.getConnection("jdbc:sqlite:d:/sqlite/ejemplo.db");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+
+}

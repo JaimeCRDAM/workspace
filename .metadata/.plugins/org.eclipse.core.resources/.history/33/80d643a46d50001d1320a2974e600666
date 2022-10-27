@@ -1,0 +1,83 @@
+package prueba;
+
+import java.io.*;
+
+public class examen1 {
+
+		public static void main (String args[]) throws IOException {
+			File fichero = new File ("libros.dat");
+			RandomAccessFile file = new RandomAccessFile(fichero,"rw");
+			
+			// Podría haber muchos más libros - Utilizaremos el ISBN para como código único para obtener la dirección física dónde guardarlo:
+			int isbn[] = {23,1,10,13,15,4,30,20,25,12};
+			
+			// Cada TITULO ocupará 40 caracteres:
+			String titulo[] = {"La casa de los espíritus","La novia gitana","Amanece que no es poco","El clan del oso cavernario","Paula","Viven","Los pilares de la tierra","Los renglones torcidos de Dios","La piel del tambor","El juego del ángel"};
+			
+			// Número de EJEMPLARES que tenemos de cada libro:
+			int ejemplares[]={1,2,8,2,1,3,5,1,1,4};
+			
+			// Precio de cada libro:
+			double precio[]={50, 27.5,12,38,20, 10.5, 6.5,25,20,15};
+			
+			// A partir de aquí empieza la solución del alumno.
+			//4+40+4+8
+			
+			for(int i=0; i<isbn.length; i++) {
+				file.seek((isbn[i]-1)*56);
+				WriteInt(file, (isbn[i]-1)*56, 0, isbn[i]);
+			}
+			int cont = 0;
+			file.seek(0);
+			for(int i=0; i<file.length(); i+=56) {
+				int isbnN = file.readInt();
+				char nombreC[]= new char[20];
+				int ejemplar;
+				double precioD;
+				if (isbnN != 0) {
+					for(int j=0; j<nombreC.length; j++) {
+						nombreC[j] = file.readChar();
+					}
+					String nombre= new String(nombreC);
+					ejemplar = file.readInt();
+					precioD = file.readDouble();
+					System.out.println("comienzo del registro: "+cont+" -> ISBN: "+isbnN+" Titulo: "+nombre+", Ejemplares: "+ejemplar+", Precio: "+precioD );
+					cont++;
+				}
+			}
+			file.close();
+
+	}
+		private static String ReadString(RandomAccessFile raf, int pos, int offset, int length) throws IOException {
+
+			char[] nombre = new char[length];
+			raf.seek(pos+offset);
+			for(int i = 0; i<nombre.length; i++) {
+				nombre[i]=raf.readChar();
+			}
+			return String.valueOf(nombre);
+			
+		}
+		
+		private static int ReadInt(RandomAccessFile raf, int pos, int offset) throws IOException {
+			raf.seek(pos+offset);
+			return raf.readInt();
+		}
+		
+		private static double ReadSalario(RandomAccessFile raf, int pos, int offset) throws IOException {
+			raf.seek(pos+offset);
+			return raf.readDouble();
+		}
+		
+		private static void WriteString(RandomAccessFile raf, int pos, int offset, String string, int totalLenght) throws IOException {
+			raf.seek(pos+offset);
+			StringBuffer SBn = new StringBuffer(string);
+			SBn.setLength(totalLenght);
+			raf.writeChars(SBn.toString());
+		}
+		private static void WriteInt(RandomAccessFile raf, int pos, int offset, int intToWrite) throws IOException {
+			raf.seek(pos+offset);
+			raf.writeInt(intToWrite);
+		}
+
+}

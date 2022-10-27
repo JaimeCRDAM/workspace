@@ -1,0 +1,25 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException{
+    	File fichero = new File("C:\\Users\\dam201\\workspace\\Prueba\\src\\prueba.txt");
+    	FileReader f = new FileReader(fichero);
+    	int i;
+    	char cadena[]=new char[20];
+    	do{
+    		i = f.read();
+    		System.out.print((char)(i));
+    	}while(i != -1);
+    	f.close();
+    	FileReader k = new FileReader(fichero);
+    	do{
+    		i = f.read(cadena);
+    		for(int j = i; j < i;j++) {
+    			System.out.print((char)cadena[j]);
+    		}
+    	}while(i != -1);
+    }
+}

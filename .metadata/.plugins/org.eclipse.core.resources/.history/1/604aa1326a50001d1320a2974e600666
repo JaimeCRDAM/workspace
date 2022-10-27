@@ -1,0 +1,9 @@
+package prueba;
+
+import java.io.IOException;
+
+public class examen2 {
+	public static void main (String args[]) throws IOException {
+		
+	}
+}

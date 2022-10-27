@@ -1,0 +1,15 @@
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+
+public class npi {
+	public npi() throws ParserConfigurationException {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		DOMImplementation implementation= builder. getDOMImplementation();
+		Document document=implementation.createDocument(null,"Empleados",null);
+		document.setXmlVersion("1");
+		Element raiz = document.createElement("Raiz");
+		document.getDocumentElement().appendChild(raiz);
+		
+	}
+}

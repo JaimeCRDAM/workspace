@@ -1,0 +1,17 @@
+package conectores;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class h2 {
+
+	public static void main(String[] args) {
+		try {
+			
+			System.out.println("hola");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

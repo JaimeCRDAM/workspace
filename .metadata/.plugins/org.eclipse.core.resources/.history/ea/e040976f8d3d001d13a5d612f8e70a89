@@ -1,0 +1,14 @@
+import java.io.*;
+
+public class EscribirFichData {
+	public EscribirFichData() throws IOException {
+		File f = new File("FichData.txt");
+		FileOutputStream fOS = new FileOutputStream(f);
+		DataOutputStream dOS = new DataOutputStream(fOS);
+		for(int i = 0; i < 100; i++) {
+			dOS.writeUTF(String.valueOf(i));
+			dOS.write(i);
+		}
+		dOS.close();
+	}
+}

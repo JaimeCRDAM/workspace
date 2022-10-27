@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import com.sun.tools.javac.util.ArrayUtils;
+
+public class Cesar {
+	String cifradoArray[] = new String[] {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"," "};
+	public Cesar(String[] args) throws IOException {
+		BufferedReader fr = new BufferedReader(new FileReader(args[0]));
+		StringBuilder cifrado = new StringBuilder();
+		int letra = fr.read();
+		while(letra != -1) {
+			char letrac = (char)letra;
+			String letras = String.valueOf(letrac).toUpperCase();
+			int index = indexOf(letras, cifradoArray);
+			if(index+3 > cifradoArray.length) {
+				index = index - cifradoArray.length;
+			}
+			cifrado.append(cifradoArray[index+3]);
+			letra = fr.read();
+		}
+		System.out.println(cifrado);
+	}
+	
+	private int indexOf(String a, String array[]) {
+		int toReturn = 0;
+		for(int i=0;i<array.length;i++ ) {
+			if(array[i].equals(a)) {
+				toReturn = i;
+				break;
+			}
+		}
+		return toReturn;
+	}
+	
+	private void descifrar(String cifrado) {
+			
+	}
+}

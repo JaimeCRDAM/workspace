@@ -1,0 +1,13 @@
+import java.io.*;
+
+public class EscribirFichBytes {
+
+	public EscribirFichBytes() throws IOException {
+		File f = new File("FichBytes.txt");
+		FileOutputStream fOutputStream = new FileOutputStream(f);
+		FileInputStream fInputStream = new FileInputStream(f);
+		fOutputStream.write(1151258);
+		fOutputStream.close();
+	}
+
+}

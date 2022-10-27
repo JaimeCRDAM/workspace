@@ -1,0 +1,18 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class Main {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+
+		
+		// Cargar el driver de Apache Derby:
+		Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+		// Establecemos una conexión con la BD "ejemplo" que reside en D:/db/Derby
+		Connection conexionderby = DriverManager.getConnection("jdbc:derby:C:\\Users\\dam201\\Clases\\Asignaturas\\Acceso de datos\\Tema 2\\RecursosUnidad2\\Software\\db-derby-10.8.2.2-bin\\bin\\ejemplo");
+
+
+	}
+
+}
