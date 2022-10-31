@@ -56,7 +56,7 @@ public class sqlite {
             Statement sentencia = conexion.createStatement();
             ResultSet st = sentencia.executeQuery("Select * from departamentos");
             ResultSetMetaData rsmd = st.getMetaData();
-            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+            for (int i = 0; i < rsmd.getColumnCount(); i++) {
 				System.out.println(i + " "+rsmd.getColumnName(i)+" "+rsmd.getColumnTypeName(i)+" "+rsmd.isNullable(i)+" "+rsmd.getColumnDisplaySize(i));
 			}
             

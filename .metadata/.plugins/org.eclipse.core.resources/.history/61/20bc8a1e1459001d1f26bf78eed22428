@@ -35,20 +35,6 @@ public class oracle {
         	String formatted = String.format("Tipo: %s, Catalogo: %s, Esquema: %s, Tabla: %s", tipo, catalogo, esquema, tabla);
         	System.out.println(formatted);
         }
-        ResultSet pk = dbmd.getPrimaryKeys(null, "ejemplo", "departamentos");
-        while(pk.next()) {
-        	//System.out.println(pk.getString(columnLabel));
-        }
-        
-        ResultSet ek = dbmd.getExportedKeys(null, "ejemplo", "departamentos");
-        while(ek.next()) {
-        	String ek_name = ek.getString("FKCOLUMN_NAME");
-        	String pk_name = ek.getString("PKCOLUMN_NAME");
-        	String pk_tablename = ek.getString("PKTABLE_NAME");
-        	String ek_tablename = ek.getString("FKTABLE_NAME");
-        	System.out.println(ek_tablename +" "+ek_name);
-        	System.out.println(pk_tablename +" "+pk_name);
-        }
         
         resul.close();
         resul2.close();

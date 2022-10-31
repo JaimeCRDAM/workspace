@@ -3,7 +3,6 @@ package conectores;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -43,22 +42,6 @@ public class sqlite {
             	String formatted = String.format("Tipo: %s, Catalogo: %s, Esquema: %s, Tabla: %s", tipo, catalogo, esquema, tabla);
             	System.out.println(formatted);
             }
-            
-            ResultSet ek = dbmd.getExportedKeys(null, "ejemplo", "departamentos");
-            while(ek.next()) {
-            	String ek_name = ek.getString("FKCOLUMN_NAME");
-            	String pk_name = ek.getString("PKCOLUMN_NAME");
-            	String pk_tablename = ek.getString("PKTABLE_NAME");
-            	String ek_tablename = ek.getString("FKTABLE_NAME");
-            	System.out.println(ek_tablename +" "+ek_name);
-            	System.out.println(pk_tablename +" "+pk_name);
-            }
-            Statement sentencia = conexion.createStatement();
-            ResultSet st = sentencia.executeQuery("Select * from departamentos");
-            ResultSetMetaData rsmd = st.getMetaData();
-            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-				System.out.println(i + " "+rsmd.getColumnName(i)+" "+rsmd.getColumnTypeName(i)+" "+rsmd.isNullable(i)+" "+rsmd.getColumnDisplaySize(i));
-			}
             
             resul.close();
             resul2.close();

@@ -39,7 +39,6 @@ public class oracle {
         while(pk.next()) {
         	//System.out.println(pk.getString(columnLabel));
         }
-        
         ResultSet ek = dbmd.getExportedKeys(null, "ejemplo", "departamentos");
         while(ek.next()) {
         	String ek_name = ek.getString("FKCOLUMN_NAME");
